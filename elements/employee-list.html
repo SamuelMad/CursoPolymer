@@ -1,0 +1,82 @@
+<dom-module id="employee-list">
+
+  <template>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      :host{
+        display: block;
+        overflow: hidden;
+      }
+      .listaEmpleados,
+      .listaSeleccionados {
+        overflow: hidden;
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        margin:8px;
+        width: calc(50% - 16px);
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 8px;
+        height: 90vh;
+      }
+      .listaSeleccionados div,
+      .listaEmpleados div {
+        background-color: #f6f6f6;
+        padding: 5px 5px 0;
+      }
+      .listaEmpleados button {
+        width: 100%;
+        margin: 0 0 16px;
+      }
+      .listaSeleccionados div:nth-child(odd) {
+        margin-bottom: 18px;
+        padding-bottom: 19px;
+      }
+    </style>
+    <div class="listaEmpleados"> 
+      <h1>Lista de Empleados:</h1> 
+      <template is="dom-repeat" id="employeeList" items="{{employees}}">
+        <div>Nombre: <span>{{item.first}}</span></div>
+        <div>Apellido: <span>{{item.last}}</span></div>
+        <button on-click="toggleSelection">Select</button>
+      </template>
+    </div>
+    <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
+
+    <div class="listaSeleccionados"> 
+      <h1>Seleccionados:</h1> 
+      <template is="dom-repeat" items="{{selected}}">
+          <div>Nombre: <span>{{item.first}}</span></div>
+          <div>Apellido: <span>{{item.last}}</span></div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'employee-list',
+      ready: function() {
+        this.employees = [
+            {first: 'Bob', last: 'Smith'},
+            {first: 'Sally', last: 'Johnson'},
+            {first: 'Rob', last: 'Donson'},
+            {first: 'Sally', last: 'Smith'}
+        ];
+      },
+      toggleSelection: function(e) {
+        var item = this.$.employeeList.itemForElement(e.target);
+        this.$.selector.select(item);
+        if(this.$.selector.isSelected(item)){
+          e.model._children[5].innerText = 'Deselect';
+        }else{
+          e.model._children[5].innerText = 'Select';
+
+        }
+      }
+    });
+  </script>
+
+</dom-module>

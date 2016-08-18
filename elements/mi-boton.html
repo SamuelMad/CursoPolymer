@@ -1,0 +1,22 @@
+<dom-module id="mi-boton">
+  
+  <script>
+    Polymer({
+      is: 'mi-boton',
+      extends: 'button',
+      listeners: {
+        'click': 'clickHandler'
+      },
+      created: function(){alert('ddddd')},
+      attached:function () {
+        this.style.color = 'red';
+        this.textContent = 'Soy un boton personalizado'
+        //this.addEventListener('click', this.clickHandler);
+      },
+      clickHandler: function () {
+        console.log(this.textContent);
+        this.textContent = this.textContent.split(' ').reverse().join(' ');
+      }
+    });
+  </script>
+</dom-module>

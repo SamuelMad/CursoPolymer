@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<dom-module id="cat-alogue2">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+            }
+            .pic {
+                height: 375px;
+            }
+            h1 {
+                color: red;
+            }
+        </style>
+        <iron-pages id="pages"  selected="{{selected}}"" attr-for-selected="data-cat">
+        <template is="dom-repeat" items="{{cats}}">    
+            <section data-cat="{{item.data}}">
+            <h1>{{item.name}}</h1>
+                <img src="{{item.image}}" class="pic" alt="{{item.name}}">
+            </section>
+        </template>
+        </iron-pages>
+
+        <div class="controls">
+            <button on-tap="_goPrev">Prev</button>
+            <input type="text" value="{{selected::input}}">
+            <button on-tap="_goNext">Next</button>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'cat-alogue2',
+            ready: function() {
+                this.cats = [
+                    {name: 'Einstein Cat', data:'Einstein', image:'imgs/01_cat.jpg'}, 
+                    {name: 'Hacker Cat', data:'Hacker', image:'imgs/02_cat.jpg'}, 
+                    {name: 'Pretty Cat', data:'Pretty', image:'imgs/03_cat.jpg'}, 
+                    {name: 'Lazy Cat', data:'Lazy', image:'imgs/04_cat.jpg'}
+                ];
+            },
+            properties: {
+                selected: {
+                    type:String,
+                    value:"Lazy"   
+                }
+            },
+            _goPrev: function () {
+                this.$.pages.selectPrevious();
+            },
+            _goNext: function() {
+                this.$.pages.selectNext();
+            }
+        });
+    </script>
+</dom-module>

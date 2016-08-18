@@ -1,0 +1,24 @@
+{
+  "name": "cursoPolymer",
+  "homepage": "https://github.com/samuelmad/cursoPolymer",
+  "authors": [
+    "Samuel Gómez <samuelgomezmartin@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer#^1.6.1",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.4",
+    "app-layout": "PolymerElements/app-layout#^0.10.2",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.8",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.3.1"
+  }
+}
